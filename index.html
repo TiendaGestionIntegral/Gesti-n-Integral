@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROYECTO DE GESTION INTEGRAL 2024</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            padding: 20px;
+            background-color: #00a6ff;
+            margin: 0;
+        }
+        table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr.expired {
+            background-color: #ffcccc;
+        }
+        .expiry-date {
+            font-weight: bold;
+        }
+        .alert {
+            color: red;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .edit-button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .edit-button:hover {
+            background-color: #218838;
+        }
+        .input-date {
+            padding: 5px;
+            font-size: 16px;
+            width: 100px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        .notification {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #ff4d4d;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: none;
+            font-size: 18px;
+        }
+        .category-title {
+            background-color: #00a6ff;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin: 0;
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>TABLA DE GESTION INTEGRAL</h1>
+
+    <!-- Notificación de expiración -->
+    <div id="notification" class="notification">
+        ¡Atención! Un producto ha expirado.
+    </div>
+
+    <!-- Tabla de LÁCTEOS -->
+    <div class="category-title">LÁCTEOS</div>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre del Producto</th>
+                <th>Valor de Venta</th>
+                <th>Fecha de Caducidad</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="lacteosTable">
+            <tr class="product">
+                <td>Chocolatada</td>
+                <td>1.50 Bs</td>
+                <td class="expiry-date">2024-12-24</td>
+                <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+            </tr>
+            <tr class="product">
+                <td>Pilfrut</td>
+                <td>1.50 Bs</td>
+                <td class="expiry-date">2024-11-30</td>
+                <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+            </tr>
+            <tr class="product">
+                <td>Yogurt</td>
+                <td>1.50 Bs</td>
+                <td class="expiry-date">2024-11-30</td>
+                <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+            </tr>
+             <tr class="product">
+                <td>Leche</td>
+                <td>6.00 Bs</td>
+                <td class="expiry-date">2024-12-01</td>
+                <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+            </tr> 
+            <tr class="product">
+                <td>Soya</td>
+                <td>5.00 Bs</td>
+                <td class="expiry-date">2024-11-27</td>
+                <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- Tabla de CHOCOLATES -->
+    <div class="category-title">CHOCOLATES</div>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre del Producto</th>
+                <th>Valor de Venta</th>
+                <th>Fecha de Caducidad</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="ChocolatesTable">
+            <tr class="product">
+                <td>Porleo</td>
+                <td>2.50 Bs</td>
+                <td class="expiry-date">2025-07-11</td>
+                <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+            </tr>
+            <tr class="product">
+                <td>Volumen</td>
+                <td>1.50 Bs</td>
+                <td class="expiry-date">2024-11-30</td>
+                <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+            </tr>
+            <tr class="product">
+                <td>Chocman</td>
+                <td>2.00 Bs</td>
+                <td class="expiry-date">2025-01-03</td>
+                <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+            </tr>
+            <tr class="product">
+                <td>Kilatte</td>
+                <td>1.50 Bs</td>
+                <td class="expiry-date">2025-05-01</td>
+                <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+            </tr> 
+            <tr class="product">
+                <td>Triangulo</td>
+                <td>4.00 Bs</td>
+                <td class="expiry-date">2024-11-30</td>
+                <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+            </tr>
+             <tr class="product">
+                <td>X-6 Barra</td>
+                <td>1.50 Bs</td>
+                <td class="expiry-date">2025-01-07</td>
+                <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+            </tr>
+             <tr class="product">
+                <td>Galleticones</td>
+                <td>3.00 Bs</td>
+                <td class="expiry-date">2024-12-15</td>
+                <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+            </tr>
+             <tr class="product">
+                <td>Oreo</td>
+                <td>3.00 Bs</td>
+                <td class="expiry-date">2025-04-01</td>
+                <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+            </tr>
+            <tr class="product">
+                <td>Choco soda</td>
+                <td>3.00 Bs</td>
+                <td class="expiry-date">2024-12-30</td>
+                <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+            </tr> <tr class="product">
+                <td>Crestitas choc</td>
+                <td>1.00 Bs</td>
+                <td class="expiry-date">2025-12-01</td>
+                <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+            </tr> <tr class="product">
+                <td>Merlitas</td>
+                <td>1.50 Bs</td>
+                <td class="expiry-date">2024-11-30</td>
+                <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+            </tr> <tr class="product">
+                <td>Carlita</td>
+                <td>0.50 Bs</td>
+                <td class="expiry-date">2025-12-01</td>
+                <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+            </tr> <tr class="product">
+                <td>Jorgito de arroz</td>
+                <td>0.50 Bs</td>
+                <td class="expiry-date">2025-07-01</td>
+                <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+            </tr> <tr class="product">
+                <td>Grageas</td>
+                <td>0.50 Bs</td>
+                <td class="expiry-date">2026-12-26</td>
+                <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+            </tr>
+        </tbody>
+    </table>
+        <!-- Tabla de GALLETAS -->
+        <div class="category-title">GALLETAS</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre del Producto</th>
+                    <th>Valor de Venta</th>
+                    <th>Fecha de Caducidad</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="GalletasTable">
+                <tr class="product">
+                    <td>Wafer pequeña</td>
+                    <td>1.50 Bs</td>
+                    <td class="expiry-date">2025-03-03</td>
+                    <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+                </tr>
+                <tr class="product">
+                    <td>Wafer grande</td>
+                    <td>3.50 Bs</td>
+                    <td class="expiry-date">2024-12-01</td>
+                    <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+                </tr>  <tr class="product">
+                    <td>Wafi</td>
+                    <td>1.50 Bs</td>
+                    <td class="expiry-date">2025-02-20</td>
+                    <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+                </tr>  
+                <tr class="product">
+                    <td>Galletas bandeja</td>
+                    <td>11.50 Bs</td>
+                    <td class="expiry-date">2025-05-13</td>
+                    <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+                </tr>
+                <tr class="product">
+                    <td>Cream Cracker</td>
+                    <td>6.00 Bs</td>
+                    <td class="expiry-date">2026-06-03</td>
+                    <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+                </tr><tr class="product">
+                    <td>Moraditas</td>
+                    <td>2.50 Bs</td>
+                    <td class="expiry-date">2025-05-20</td>
+                    <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+                </tr><tr class="product">
+                    <td>Dinosauris</td>
+                    <td>0.50 Bs</td>
+                    <td class="expiry-date">2024-12-14</td>
+                    <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+                </tr><tr class="product">
+                    <td>Cookis/td>
+                    <td>0.50 Bs</td>
+                    <td class="expiry-date">2024-12-25</td>
+                    <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+                </tr>
+            </tbody>
+        </table>
+                    <!-- Tabla de Cereales -->
+    <div class="category-title">Cereales</div>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre del Producto</th>
+                <th>Valor de Venta</th>
+                <th>Fecha de Caducidad</th>
+                <th>Acciones</th>
+            </tr>
+            
+        </thead>
+        <tbody id="CerealesTable">
+            <tr class="product">
+                <td>Cereales</td>
+                <td>1.00 Bs</td>
+                <td class="expiry-date">2024-12-04</td>
+                <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+            </tr>
+            <tr class="product">
+                <td>Avena</td>
+                <td>11.00 Bs</td>
+                <td class="expiry-date">2025-02-04</td>
+                <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+            </tr>
+            <tr class="product">
+                <td>Maicena</td>
+                <td>5.00 Bs</td>
+                <td class="expiry-date">2024-12-04</td>
+                <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+            </tr>
+        </tbody>
+    </table>
+               <!-- Tabla de Comida Instantanea -->
+            <div class="category-title">Comida Instantanea</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre del Producto</th>
+                        <th>Valor de Venta</th>
+                        <th>Fecha de Caducidad</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="Comida instantaneaTable">
+                    <tr class="product">
+                        <td>Nissin Ramen </td>
+                        <td>4.00 Bs</td>
+                        <td class="expiry-date">2025-05-03</td>
+                        <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+                    </tr>
+                    <tr class="product">
+                        <td>Aji Nomen </td>
+                        <td>4.00 Bs</td>
+                        <td class="expiry-date">2025-07-03</td>
+                        <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+                    </tr>
+                </tbody>
+            </table>
+                        <!-- Tabla de Pipocas y snacks -->
+                    <div class="category-title">Pipocas y snacks</div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nombre del Producto</th>
+                                <th>Valor de Venta</th>
+                                <th>Fecha de Caducidad</th>
+                                <th>Acciones</th>
+                </tr>
+              </thead>
+        <tbody id="Pipocas y snacksTable">
+            <tr class="product">
+              <td>Piposal</td>
+                 <td>0.50 Bs</td>
+               <td class="expiry-date">2026-05-30</td>
+               <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+              </tr>
+               <tr class="product">
+             <td>Chisito </td>
+                  <td>1.00 Bs</td>
+                                <td class="expiry-date">2024-11-26</td>
+                                <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+                            </tr> <tr class="product">
+                                <td>Bacon </td>
+                                <td>1.50 Bs</td>
+                                <td class="expiry-date">2026-06-01</td>
+                                <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+                            </tr> <tr class="product">
+                                <td>MX snacks crocante </td>
+                                <td>1.50 Bs</td>
+                                <td class="expiry-date">2024-12-12</td>
+                                <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                              <!-- Tabla de Enlatados y sellados  -->
+                            <div class="category-title">Enlatados y sellados </div>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Nombre del Producto</th>
+                                        <th>Valor de Venta</th>
+                                        <th>Fecha de Caducidad</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="Enlatados y selladosTable">
+                                    <tr class="product">
+                                        <td>Leche evaporada</td>
+                                        <td>14.00 Bs</td>
+                                        <td class="expiry-date">2025-03-02</td>
+                                        <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+                                    </tr>  
+                                    <tr class="product">
+                                        <td>Leche condensada </td>
+                                        <td>15.00 Bs</td>
+                                        <td class="expiry-date">2025-08-03</td>
+                                        <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+                                    </tr> <tr class="product">
+                                        <td>Mantequilla Regia </td>
+                                        <td>12.00 Bs</td>
+                                        <td class="expiry-date">2025-03-14</td>
+                                        <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+                                    </tr>
+                                    <tr class="product">
+                                        <td>Mantequilla Reyna  </td>
+                                        <td>8.00 Bs</td>
+                                        <td class="expiry-date">2025-10-03</td>
+                                        <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+                                    </tr> <tr class="product">
+                                        <td>Chocolate de mesa Ceibo </td>
+                                        <td>3.50 Bs</td>
+                                        <td class="expiry-date">2024-12-31</td>
+                                        <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+                                    </tr> <tr class="product">
+                                        <td>Chocolate Aguila </td>
+                                        <td>1.00 Bs</td>
+                                        <td class="expiry-date">2025-02-14</td>
+                                        <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+                                    </tr> <tr class="product">
+                                        <td>Carne picadillo </td>
+                                        <td>3.00 Bs</td>
+                                        <td class="expiry-date">2026-02-22</td>
+                                        <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+                                    </tr>
+                                    <tr class="product">
+                                        <td>Atun </td>
+                                        <td>10.00 Bs</td>
+                                        <td class="expiry-date">2026-07-27</td>
+                                        <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+                                    </tr>
+                                    <tr class="product">
+                                        <td>Sardina  Pejuez </td>
+                                        <td>14.00 Bs</td>
+                                        <td class="expiry-date">2027-03-12</td>
+                                        <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                                    <!-- Tabla de Condimentos y aderesos -->
+                                    <div class="category-title">Condimentos y aderesos</div>
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>Nombre del Producto</th>
+                                                <th>Valor de Venta</th>
+                                                <th>Fecha de Caducidad</th>
+                                                <th>Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="Condimentos y aderesosTable">
+                                            <tr class="product">
+                                                <td>Mayonesa picante</td>
+                                                <td>2.00 Bs</td>
+                                                <td class="expiry-date">2024-12-24</td>
+                                                <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+                                            </tr>
+                                            <tr class="product">
+                                                <td>Mayonesa sin picante </td>
+                                                <td>2.00 Bs</td>
+                                                <td class="expiry-date">2024-12-24</td>
+                                                <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+                                            </tr>
+                                             <tr class="product">
+                                                <td>Ketchup </td>
+                                                <td>2.00 Bs</td>
+                                                <td class="expiry-date">2025-02-03</td>
+                                                <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+                                            </tr>
+                                             <tr class="product">
+                                                <td>Nissin Ramen </td>
+                                                <td>4.00 Bs</td>
+                                                <td class="expiry-date">2025-07-03</td>
+                                                <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+                                            </tr> <tr class="product">
+                                                <td>Aji amarillo sin picante </td>
+                                                <td>0.60 Bs</td>
+                                                <td class="expiry-date">2025-07-03</td>
+                                                <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+                                            </tr> <tr class="product">
+                                                <td>Aji amarillo picante </td>
+                                                <td>0.60 Bs</td>
+                                                <td class="expiry-date">2025-07-03</td>
+                                                <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+                                            </tr> <tr class="product">
+                                                <td>Aji rojo sin picante </td>
+                                                <td>0.60 Bs</td>
+                                                <td class="expiry-date">2026-12-03</td>
+                                                <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+                                            </tr> <tr class="product">
+                                                <td>Aji rojo picante </td>
+                                                <td>0.60 Bs</td>
+                                                <td class="expiry-date">2027-03-03</td>
+                                                <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+                                            </tr> <tr class="product">
+                                                <td>Comino </td>
+                                                <td>0.60 Bs</td>
+                                                <td class="expiry-date">2027-12-23</td>
+                                                <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+                                            </tr>
+                                            <tr class="product">
+                                                <td>Pimienta en polvo </td>
+                                                <td>0.60 Bs</td>
+                                                <td class="expiry-date">2026-12-24</td>
+                                                <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+   <!-- Tabla de Productos de uso diario -->
+   <div class="category-title">Productos de uso diario</div>
+   <table>
+       <thead>
+           <tr>
+               <th> Nombre del Producto</th>
+               <th>Valor de Venta</th>
+               <th>Fecha de Caducidad</th>
+               <th>Acciones</th>
+           </tr>
+       </thead>
+       <tbody id="lacteosTable">
+           <tr class="product">
+               <td>Pegafon</td>
+               <td>2.00 Bs</td>
+               <td class="expiry-date">2025-01-03</td>
+               <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+           </tr>
+           <tr class="product">
+            <td>Todo Brillo </td>
+            <td>4.50 Bs</td>
+            <td class="expiry-date">2027-02-27</td>
+            <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+        </tr><tr class="product">
+            <td>Ace patito</td>
+            <td>5.00 Bs</td>
+            <td class="expiry-date">2027-02-27</td>
+            <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+        </tr><tr class="product">
+            <td>Opalo Ultra</td>
+            <td>9.00 Bs</td>
+            <td class="expiry-date">2027-11-30</td>
+            <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+        </tr><tr class="product">
+            <td>Detergente</td>
+            <td>7.00 Bs</td>
+            <td class="expiry-date">2026-07-03</td>
+            <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+        </tr><tr class="product">
+            <td>Jabon Bolivar Floral</td>
+            <td>5.00 Bs</td>
+            <td class="expiry-date">2025-12-25</td>
+            <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+        </tr><tr class="product">
+            <td>Jabon Uno</td>
+            <td>4.00 Bs</td>
+            <td class="expiry-date">2025-11-13</td>
+            <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+        </tr><tr class="product">
+            <td>Mentisan</td>
+            <td>3.00 Bs</td>
+            <td class="expiry-date">2028-03-01</td>
+            <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+        </tr><tr class="product">
+            <td>Shampoo Ballerin </td>
+            <td>3.00 Bs</td>
+            <td class="expiry-date">2025-07-15</td>
+            <td><button class="edit-button" onclick="editExpiryDate(this)">Editar Fecha</button></td>
+        </tr>
+    </thead>
+    <script>
+        // Función para comprobar si algún producto ha expirado
+        function checkExpiration() {
+            const today = new Date().toISOString().split('T')[0];
+            const products = document.querySelectorAll('.product');
+            let expired = false;
+            products.forEach(product => {
+                const expiryDate = product.querySelector('.expiry-date').textContent;
+                if (expiryDate < today) {
+                    product.classList.add('expired');
+                    expired = true;
+                } else {
+                    product.classList.remove('expired');
+                }
+            });
+
+            // Mostrar la notificación si algún producto ha expirado
+            const notification = document.getElementById('notification');
+            if (expired) {
+                notification.style.display = 'block';
+            } else {
+                notification.style.display = 'none';
+            }
+        }
+
+        // Función para editar la fecha de caducidad
+        function editExpiryDate(button) {
+            const row = button.parentElement.parentElement;
+            const expiryCell = row.querySelector('.expiry-date');
+            const currentDate = expiryCell.textContent;
+
+            // Crear un campo de entrada para editar la fecha
+            const input = document.createElement('input');
+            input.type = 'date';
+            input.value = currentDate;
+            input.classList.add('input-date');
+            
+            // Reemplazar el contenido de la celda con el campo de entrada
+            expiryCell.innerHTML = '';
+            expiryCell.appendChild(input);
+
+            // Cambiar el botón a 'Guardar'
+            button.textContent = 'Guardar';
+            button.setAttribute('onclick', 'saveExpiryDate(this)');
+        }
+
+        // Función para guardar la nueva fecha
+        function saveExpiryDate(button) {
+            const row = button.parentElement.parentElement;
+            const expiryCell = row.querySelector('.expiry-date');
+            const input = expiryCell.querySelector('input');
+            const newDate = input.value;
+
+            // Actualizar la celda con la nueva fecha
+            expiryCell.textContent = newDate;
+
+            // Cambiar el botón a 'Editar Fecha'
+            button.textContent = 'Editar Fecha';
+            button.setAttribute('onclick', 'editExpiryDate(this)');
+
+            // Comprobar si el producto ha expirado
+            checkExpiration();
+        }
+
+        // Llamar a la función para verificar las expiraciones al cargar la página
+        window.onload = function() {
+            checkExpiration();
+        }
+    </script>
+</body>
+</html>
